@@ -57,7 +57,7 @@ function gameClick () {
 				}
 
 				else {
-					if (letGuessed.includes(keynum) == false){
+					if (letGuessed.includes(keynum.toUpperCase()) == false){
 						remGuesses -= 1;
 						changeDocValue("guessesRem", remGuesses);
 						letGuessed += keynum.toUpperCase() + " ";
