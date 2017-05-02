@@ -8,14 +8,17 @@ letGuessed = "";
 
 playing = false;
 
-var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH"]
+var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH", "PANCAKE", "SUPER", "TRUTH",
+"ORANGUTAN", "ORANGE", "PENGUIN", "TACO"]
 
 var letters = document.getElementsByClassName("letterInWord");
 var spaces = document.getElementsByClassName("letterSpaces");
+// 
 
 function resetGame () {
 	letGuessed = "";
 	remGuesses = 7;
+	document.getElementById("hangmanImg").src = "assets/images/sm1.png"
 	changeDocValue("numberOfWins", wins);
 	changeDocValue("guessesRem", remGuesses);
 	changeDocValue("lettersGuessed", letGuessed);
@@ -29,6 +32,8 @@ function resetGame () {
 }
 
 function gameClick () {
+
+
 	if (playing == false){
 		resetGame();
 		changeDocValue("gameStateText", "Guess the word!");
@@ -57,11 +62,12 @@ function gameClick () {
 				}
 
 				else {
-					if (letGuessed.includes(keynum) == false){
+					if (letGuessed.includes(keynum.toUpperCase()) == false){
 						remGuesses -= 1;
 						changeDocValue("guessesRem", remGuesses);
 						letGuessed += keynum.toUpperCase() + " ";
 						changeDocValue("lettersGuessed", letGuessed);
+						document.getElementById("hangmanImg").src = "assets/images/sm" + (-(remGuesses-8)) + ".png";
 						gameStateCheck();
 					}
 					
