@@ -12,10 +12,12 @@ var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH"]
 
 var letters = document.getElementsByClassName("letterInWord");
 var spaces = document.getElementsByClassName("letterSpaces");
+// 
 
 function resetGame () {
 	letGuessed = "";
 	remGuesses = 7;
+	document.getElementById("hangmanImg").src = "assets/images/sm1.png"
 	changeDocValue("numberOfWins", wins);
 	changeDocValue("guessesRem", remGuesses);
 	changeDocValue("lettersGuessed", letGuessed);
@@ -29,6 +31,8 @@ function resetGame () {
 }
 
 function gameClick () {
+
+
 	if (playing == false){
 		resetGame();
 		changeDocValue("gameStateText", "Guess the word!");
@@ -62,6 +66,7 @@ function gameClick () {
 						changeDocValue("guessesRem", remGuesses);
 						letGuessed += keynum.toUpperCase() + " ";
 						changeDocValue("lettersGuessed", letGuessed);
+						document.getElementById("hangmanImg").src = "assets/images/sm" + (-(remGuesses-8)) + ".png";
 						gameStateCheck();
 					}
 					
