@@ -30,8 +30,9 @@ function gameClick () {
 		document.getElementById("gameStateText").innerHTML = "Guess the word!";
 		playing = true;
 
-		for (var i = 0; i < words[0].length; i++) {
-			letters[i].innerHTML = words[0][i];
+		wordToGuess = words[Math.floor(Math.random() * words.length)];
+		for (var i = 0; i < wordToGuess.length; i++) {
+			letters[i].innerHTML = wordToGuess[i];
 			spaces[i].style.display = "block";
 		}
 	}
@@ -42,7 +43,9 @@ function gameClick () {
 	    	keynum = String.fromCharCode(event.keyCode);
 
 	    	if (keynum.match(/[a-z]/gi)) {
-   				alert("Letter");
+   				for (var i = Things.length - 1; i >= 0; i--) {
+   					Things[i]
+   				}
 			}
 
 			else {
