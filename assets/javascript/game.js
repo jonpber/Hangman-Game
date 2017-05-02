@@ -8,7 +8,8 @@ letGuessed = "";
 
 playing = false;
 
-var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH"]
+var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH", "PANCAKE", "SUPER", "TRUTH",
+"ORANGUTAN", "ORANGE", "PENGUIN", "TACO"]
 
 var letters = document.getElementsByClassName("letterInWord");
 var spaces = document.getElementsByClassName("letterSpaces");
