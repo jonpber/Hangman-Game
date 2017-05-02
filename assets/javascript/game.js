@@ -2,7 +2,7 @@ var wins, remGuesses, letGuessed, playing;
 
 wins = 0;
 
-remGuesses = 6;
+remGuesses = 7;
 
 letGuessed = "ABC";
 
@@ -37,8 +37,21 @@ function gameClick () {
 	}
 
 	else {
+		var keynum;
+	    if(window.event || event.which) {                  
+	    	keynum = String.fromCharCode(event.keyCode);
 
-	}
+	    	if (keynum.match(/[a-z]/gi)) {
+   				alert("Letter");
+			}
+
+			else {
+				alert("not a letter");
+			}
+
+	    } 
+  	}
+	
 }
 
 document.onkeypress = gameClick;
