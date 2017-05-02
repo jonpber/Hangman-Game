@@ -34,8 +34,10 @@ p {
 
 footer {
 	bottom: 52px;
-    margin-left: 500px;
-    /* left: 34%; */
-    /* text-align: center; */
+    margin-left: 450px;
     position: absolute;
+}
+
+img {
+	width: 400px;
 }
