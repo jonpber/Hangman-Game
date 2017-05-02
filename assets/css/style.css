@@ -29,7 +29,7 @@ p {
 }
 
 .mainContent {
-	margin-left: 150px;
+	margin-left: 125px;
 }
 
 footer {
@@ -40,4 +40,16 @@ footer {
 
 img {
 	width: 400px;
+}
+
+@media screen and (max-width: 1250px){
+	img {
+		width: 300px;
+		margin-left: 50px;
+	}
+
+	p {
+		display: inline;
+	    font-size: 21px;
+	}
 }
