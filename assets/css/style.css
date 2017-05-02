@@ -1,0 +1,32 @@
+
+body {
+	background-image: url("../images/tv.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+.foreground {
+	width: 100%;
+	overflow: hidden;
+}
+
+img {
+	height: 950px;
+    width: 100%;
+}
+
+h1, h2, h3 {
+	font-family: 'Press Start 2P', cursive;
+	color: white;
+}
+
+h1 {
+	text-align: center;
+    margin-right: 290px;
+    margin-top: 99px;
+}
+
+h3 {
+	font-size: 22px;
+}
