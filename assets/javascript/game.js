@@ -4,35 +4,38 @@ wins = 0;
 
 remGuesses = 7;
 
-letGuessed = "ABC";
+letGuessed = "";
 
 playing = false;
 
-var words = ["cat", "sword", "trickle"]
+var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH"]
 
 var letters = document.getElementsByClassName("letterInWord");
 var spaces = document.getElementsByClassName("letterSpaces");
 
 function resetGame () {
-	document.getElementById("numberOfWins").innerHTML = wins;
-	document.getElementById("guessesRem").innerHTML = remGuesses;
-	document.getElementById("lettersGuessed").innerHTML = letGuessed;
+	letGuessed = "";
+	remGuesses = 7;
+	changeDocValue("numberOfWins", wins);
+	changeDocValue("guessesRem", remGuesses);
+	changeDocValue("lettersGuessed", letGuessed);
 
     var i;
     for (i = 0; i < spaces.length; i++) {
         spaces[i].style.display = "none";
         letters[i].style.display = "none";
+        letters[i].innerHTML = "";
     }
 }
 
 function gameClick () {
 	if (playing == false){
-		document.getElementById("gameStateText").innerHTML = "Guess the word!";
+		resetGame();
+		changeDocValue("gameStateText", "Guess the word!");
 		playing = true;
 
 		wordToGuess = words[Math.floor(Math.random() * words.length)];
 		for (var i = 0; i < wordToGuess.length; i++) {
-			letters[i].innerHTML = wordToGuess[i];
 			spaces[i].style.display = "block";
 		}
 	}
@@ -43,18 +46,59 @@ function gameClick () {
 	    	keynum = String.fromCharCode(event.keyCode);
 
 	    	if (keynum.match(/[a-z]/gi)) {
-   				for (var i = Things.length - 1; i >= 0; i--) {
-   					Things[i]
-   				}
+				if (wordToGuess.includes(keynum.toUpperCase())){
+   					for (var i = 0; i < wordToGuess.length; i++) {
+   						if (wordToGuess[i] == keynum.toUpperCase()){
+   							letters[i].innerHTML = keynum.toUpperCase();
+   							letters[i].style.display = "block";
+   							gameStateCheck();
+   						}
+   					}
+				}
+
+				else {
+					if (letGuessed.includes(keynum) == false){
+						remGuesses -= 1;
+						changeDocValue("guessesRem", remGuesses);
+						letGuessed += keynum.toUpperCase() + " ";
+						changeDocValue("lettersGuessed", letGuessed);
+						gameStateCheck();
+					}
+					
+
+				}
+
 			}
 
-			else {
-				alert("not a letter");
-			}
 
 	    } 
   	}
 	
+}
+
+function changeDocValue(idName, value){
+	document.getElementById(idName).innerHTML = value;
+}
+
+function gameStateCheck(){
+	if (remGuesses < 1){
+		changeDocValue("gameStateText", "Game Over! Click to start again.");
+		playing = false;
+	}
+	else {
+		var placeHolderWord = "";
+		for (var i = 0; i < wordToGuess.length; i++){
+			placeHolderWord += letters[i].textContent;
+		}
+
+		if (wordToGuess == placeHolderWord){
+			wins += 1;
+			changeDocValue("numberOfWins", wins);
+			playing = false;
+			changeDocValue("gameStateText", "You Win! Click to start again.");
+
+		}
+	}
 }
 
 document.onkeypress = gameClick;
