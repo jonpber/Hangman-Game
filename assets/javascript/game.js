@@ -54,6 +54,15 @@ function gameClick () {
 	    	keynum = String.fromCharCode(event.keyCode);
 	    	if (keynum.match(/[a-z]/gi)) {
 				if (wordToGuess.includes(keynum.toUpperCase())){
+					var placeHolderWord = "";
+					for (var i = 0; i < wordToGuess.length; i++){
+					placeHolderWord += letters[i].textContent;
+					}
+
+					if (placeHolderWord.includes(keynum.toUpperCase()) == false){
+						successSound.play();
+						
+					}
 
    					for (var i = 0; i < wordToGuess.length; i++) {
    						if (wordToGuess[i] == keynum.toUpperCase()){
