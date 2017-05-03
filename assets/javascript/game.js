@@ -16,6 +16,9 @@ var spaces = document.getElementsByClassName("letterSpaces");
 
 var successSound = new Audio("assets/sounds/success.wav")
 var failSound = new Audio("assets/sounds/fail.wav")
+var winSound = new Audio("assets/sounds/win.wav")
+var loseSound = new Audio("assets/sounds/lose.wav")
+
 // 
 
 function resetGame () {
@@ -54,9 +57,18 @@ function gameClick () {
 	    	keynum = String.fromCharCode(event.keyCode);
 	    	if (keynum.match(/[a-z]/gi)) {
 				if (wordToGuess.includes(keynum.toUpperCase())){
+					var placeHolderWord = "";
+					for (var i = 0; i < wordToGuess.length; i++){
+					placeHolderWord += letters[i].textContent;
+					}
+
+					if (placeHolderWord.includes(keynum.toUpperCase()) == false){
+						successSound.play();
+						
+					}
 
    					for (var i = 0; i < wordToGuess.length; i++) {
-   						if (wordToGuess[i] == keynum.toUpperCase()){
+   						if (wordToGuess[i] === keynum.toUpperCase()){
    							letters[i].innerHTML = keynum.toUpperCase();
    							letters[i].style.display = "block";
    							gameStateCheck();
@@ -93,6 +105,7 @@ function changeDocValue(idName, value){
 function gameStateCheck(){
 	if (remGuesses < 1){
 		changeDocValue("gameStateText", "Game Over! Click to start again.");
+		loseSound.play();
 		playing = false;
 	}
 	else {
@@ -101,11 +114,12 @@ function gameStateCheck(){
 			placeHolderWord += letters[i].textContent;
 		}
 
-		if (wordToGuess == placeHolderWord){
+		if (wordToGuess === placeHolderWord){
 			wins += 1;
 			changeDocValue("numberOfWins", wins);
 			playing = false;
 			changeDocValue("gameStateText", "You Win! Click to start again.");
+			winSound.play();
 
 		}
 	}
