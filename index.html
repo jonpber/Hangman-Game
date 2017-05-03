@@ -17,150 +17,147 @@
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
-
-	
-	<div class="container-fluid mainContent">
-		<div class="row">
-			<div class="col-xs-12">
-				<h1>Hangman</h1>
+	<div class="tv">
+		<div class="container">
+			<div class="row topRow">
+				<div class="col-xs-12">
+					<h1>Hangman</h1>
+				</div>
 			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-xs-6 col-lg-6">
-				<div class="row">
-					<div class="col-xs-12">
-						<p>Wins:</p> <p id="numberOfWins">00</p>
-					</div>
-				</div>
 
-				<br>
-
-				<div class="row">
-					<div class="col-xs-12">
-						<p>Guesses Remaining:</p> <p id="guessesRem">0</p>
-					</div>
-				</div>
-
-				<br>
-
-				<div class="row">
-					<div class="col-xs-12">
-						<p>Letters Guessed:</p> <p id="lettersGuessed">0</p>
-					</div>
-				</div>
-
-				<br>
-				<br>
-				<br>
-				<br>
-				
-				<div class="row">
-					<div class="col-xs-12">
-						<p id="gameStateText">Press Any Key To Start!</p>
-					</div>
-				</div>
-
-				<br>
-				<br>
-				<br>
-				<br>
-
-
-				<div class="row">
-					<div class="col-xs-1">
-						<p id="l0" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l1" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l2" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l3" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l4" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l5" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l6" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l7" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l8" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l9" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="l10" class="letterInWord">L</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="11" class="letterInWord">L</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-1">
-						<p id="s0" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s1" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s2" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s3" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s4" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s5" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s6" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s7" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s8" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s9" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s10" class="letterSpaces">_</p>
-					</div>
-					<div class="col-xs-1">
-						<p id="s11" class="letterSpaces">_</p>
-					</div>
-				</div>
-
-			</div>	
+			<br>
 			
-			<div class="col-xs-6 col-lg-6">
-				<div class="row">
-					<div class="col-xs-12">
-						<img id="hangmanImg" src="assets/images/sm1.png" alt="stickman">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-xs-12">
+							<p>Wins:</p> <p id="numberOfWins">00</p>
+						</div>
 					</div>
+
+					<div class="row">
+						<div class="col-xs-12">
+							<p># Guesses:</p> <p id="guessesRem">0</p>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-xs-12">
+							<p>Letters Guessed:</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<p id="lettersGuessed">ABC</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<img id="hangmanImg" src="assets/images/sm6.png" alt="stickman">
 				</div>
 			</div>
 
-		</div>		
+			<br>
+			<br>
+
+			<div class="row">
+				<div class="col-xs-12 textCenter">
+					<p id="gameStateText">Press Any Key To Start!</p>
+				</div>
+			</div>
+			<br>
+
+			<div class="row letterRows">
+				<div class="col-xs-1">
+					<p id="l0" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l1" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l2" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l3" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l4" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l5" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l6" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l7" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l8" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l9" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="l10" class="letterInWord">L</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="11" class="letterInWord">L</p>
+				</div>
+			</div>
+			<div class="row letterRows">
+				<div class="col-xs-1">
+					<p id="s0" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s1" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s2" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s3" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s4" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s5" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s6" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s7" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s8" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s9" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s10" class="letterSpaces">_</p>
+				</div>
+				<div class="col-xs-1">
+					<p id="s11" class="letterSpaces">_</p>
+				</div>
+			</div>
+
+			<br>
+			<br>
+
+			<div class="row">
+				<div class="col-xs-12 textCenter">
+					<p class="textCenter"> Copywrite @1987 Berrytendo.</p>
+				</div>
+			</div>	
+
+		</div>
 	</div>
 
-	<footer>
-		<p> Copywrite @1987 Berrytendo.</p>
-	</footer>
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -169,7 +166,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<script src="assets/javascript/game.js"></script>
-
 	<script>resetGame()</script>
 
 
