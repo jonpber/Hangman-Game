@@ -3,11 +3,11 @@
 var hangmanGame = {
 
 	//The game words
-	words: ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH", "PANCAKE", "SUPER", "TRUTH",
-	"ORANGUTAN", "ORANGE", "PENGUIN", "TACO", "TRIUMPH", "WESTERN", "TELEVISION", "TURTLE", "BEAR", "SUSHI", "PIZZA", 
-	"EARLY", "DOCTOR", "POWERFUL", "SUBTLE", "FRIEND", "FUTURE", "MONSTER", "ROBOT", "PLUMBER", "GAME",
-	"DUCK", "WALRUS", "MAGIC", "SLEEP", "INTERNET", "APPLE", "BANJO", "CLUNKY", "INVITING", "GROUP", "FIGHTER",
-	"JARGON", "PAGE", "QUESTION"],
+	words: ["GAME", "ATARI", "PONG", "CONSOLE", "COMPUTER", "GRAPHICS", "PIXELS", "DIFFICULTY", "BOSS", "ENEMY",
+	"GORILLA", "PLUMBER", "ROBOT", "CONTROLLER", "CARTRIDGE", "FUN", "LEVEL", "LIVES", "HEDGEHOG", "BIT", "POWER", 
+	"KART", "HERO", "VILLAIN", "ABILITY", "PLATFORM", "ITEM", "MUSHROOM", "TURTLE", "SWORD", "GUN",
+	"PLAYER", "CHARACTER", "QUEST", "EQUIPMENT", "TEAM", "CODE", "SPRITE", "BROTHERS", "BOX", "ARCADE", "FIGHTER",
+	"MAGE", "WARRIOR", "MAGIC"],
 	
 	//The basic game elements: which letters were guessed, guesses remaining, if they are currently guessing a word, and win#.
 	letGuessed: "",
