@@ -9,21 +9,19 @@ body {
 }
 
 .tv {
-    background-image: url(../images/tv.png);
-    background-size: 100% 100%;
-    height: 640px;
-    width: 1003px;
-    margin: 100px auto;
-    position: relative;
+	background-image: url(../images/tv.png);
+	background-size: 100% 100%;
+	height: 640px;
+	width: 1003px;
+	margin: 100px auto;
+	position: relative;
 
 }
 
 .container {
-    width: 700px;
-    /* margin-top: 50px; */
-    margin-left: 50px;
+	width: 700px;
+	margin-left: 50px;
 }
-
 
 h1, p {
 	font-family: 'Press Start 2P', cursive;
@@ -31,9 +29,9 @@ h1, p {
 }
 
 h1 {
-    margin-bottom: 25px;
-    font-size: 30px;
-    text-align: center;
+	margin-bottom: 25px;
+	font-size: 30px;
+	text-align: center;
 }
 
 .topRow {
@@ -49,37 +47,12 @@ h1 {
 	height: 40px;
 }
 
-.pageContainer {
-	margin-left: 10%;
-}
-
-.foreground {
-	width: 100%;
-}
-
-
 p {
 	display: inline;
     font-size: 20px;
 }
 
-.mainContent {
-    margin-left: 79px;
-    width: 800px;
-    /* height: 50%; */
-    margin-top: 77px;
-    padding-top: 21px;
-}
-
-
-footer {
-    bottom: 52px;
-    left: 30%;
-    position: absolute;
-    text-align: center;
-}
-
 img {
 	width: 250px;
-    float: right;
+	float: right;
 }
