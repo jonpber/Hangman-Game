@@ -1,33 +1,45 @@
+
+//The Hangman Game Object
 var hangmanGame = {
+
+	//The game words
 	words: ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH", "PANCAKE", "SUPER", "TRUTH",
 	"ORANGUTAN", "ORANGE", "PENGUIN", "TACO", "TRIUMPH", "WESTERN", "TELEVISION", "TURTLE", "BEAR", "SUSHI", "PIZZA", 
 	"EARLY", "DOCTOR", "POWERFUL", "SUBTLE", "FRIEND", "FUTURE", "MONSTER", "ROBOT", "PLUMBER", "GAME",
 	"DUCK", "WALRUS", "MAGIC", "SLEEP", "INTERNET", "APPLE", "BANJO", "CLUNKY", "INVITING", "GROUP", "FIGHTER",
 	"JARGON", "PAGE", "QUESTION"],
+	
+	//The basic game elements: which letters were guessed, guesses remaining, if they are currently guessing a word, and win#.
 	letGuessed: "",
 	remGuesses: 7,
 	playing: false,
 	wins: 0,
+
+	//Manipulates the document letters and spaces class elements of the letters and spaces column
 	letters: document.getElementsByClassName("letterInWord"),
 	spaces: document.getElementsByClassName("letterSpaces"),
+
+	//the ingame sounds
 	successSound: new Audio("assets/sounds/success.wav"),
 	failSound: new Audio("assets/sounds/fail.wav"),
 	winSound: new Audio("assets/sounds/win.wav"),
 	loseSound: new Audio("assets/sounds/lose.wav"),
 
+	//This method takes a document ID and changes its value
 	changeDocValue: function(idName, value){
 		document.getElementById(idName).innerHTML = value;
 	},
 
+	//This method resets the game to initial mode.
 	resetGame: function (){
 		hangmanGame.letGuessed = "";
 		hangmanGame.remGuesses = 7;
 		document.getElementById("hangmanImg").src = "assets/images/sm1.png";
 		hangmanGame.changeDocValue("numberOfWins", hangmanGame.wins);
-		console.log("step 1 good");
 		hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
 		hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
 
+		//this loop goes through every space and letter element to be guessed and blanks them out.
 	    var i;
 	    for (i = 0; i < hangmanGame.spaces.length; i++) {
 	        hangmanGame.spaces[i].style.display = "none";
@@ -37,51 +49,75 @@ var hangmanGame = {
 
 	},
 
+	//This is the method that occurs every time someone clicks anything on the keyboard.
 	gameClick: function () {
+
+		//If the player clicks when the game is not in play mode, it will reset and start a game.
 		if (hangmanGame.playing === false){
 			hangmanGame.resetGame();
 			hangmanGame.changeDocValue("gameStateText", "Guess the word!");
 			hangmanGame.playing = true;
 
+			//This is the code to generate a new guessed word from the list and use a loop to go through
+			//the spaces row and fill it out according to how many letters are needed.
 			hangmanGame.wordToGuess = hangmanGame.words[Math.floor(Math.random() * hangmanGame.words.length)];
 			for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
 				hangmanGame.spaces[i].style.display = "block";
 			}
 		}
 
+		//If the player IS playing and clicks...
 		else {
+			//This piece of code checks if the window event is a keystroke.
 			var keynum;
-		    if(window.event || event.which) {                  
-		    	keynum = String.fromCharCode(event.keyCode);
-		    	if (keynum.match(/[a-z]/gi)) {
-					if (hangmanGame.wordToGuess.includes(keynum.toUpperCase())){
-						var placeHolderWord = "";
+		    if(window.event || event.which) { 
 
+		    	//The keystrong is converted to a string value.                 
+		    	keynum = String.fromCharCode(event.keyCode);
+
+		    	//This if checks if the value is in fact a letter and nothing else.
+		    	if (keynum.match(/[a-z]/gi)) {
+
+		    		//If the letter guessed is included in the word to guess/
+					if (hangmanGame.wordToGuess.includes(keynum.toUpperCase())){
+						
+						//A placeholder is used to create a comparison word.
+						var placeHolderWord = "";
 						for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
 							placeHolderWord += hangmanGame.letters[i].textContent;
 						}
 
+						//If this placeholder word does not include the letter already
 						if (placeHolderWord.includes(keynum.toUpperCase()) === false){
 							hangmanGame.successSound.play();
+
+							//It will go through and place the word in their corresponding letter spot.
+							for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
+							if (hangmanGame.wordToGuess[i] === keynum.toUpperCase()){
+								hangmanGame.letters[i].innerHTML = keynum.toUpperCase();
+								hangmanGame.letters[i].style.display = "block";
+								hangmanGame.gameStateCheck();
+							}
+						}
 							
 						}
 
-							for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
-								if (hangmanGame.wordToGuess[i] === keynum.toUpperCase()){
-									hangmanGame.letters[i].innerHTML = keynum.toUpperCase();
-									hangmanGame.letters[i].style.display = "block";
-									hangmanGame.gameStateCheck();
-								}
-							}
+						
 					}
 
+					//If the letter guessed is not in the word to guess
 					else {
+						//As long as this wrong letter hasn't been guessed before, it will go through this step
 						if (hangmanGame.letGuessed.includes(keynum.toUpperCase()) === false){
 							hangmanGame.failSound.play();
 							hangmanGame.remGuesses -= 1;
 							hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
+							//This adds the letter wrongly guessed to the letters guessed list
 							hangmanGame.letGuessed += keynum.toUpperCase() + " ";
 							hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
+
+							//This code changes the hangman image. All the images are name chronologically starting at 1, so this code
+							//automatically grows through updating it with every letter wrongly guessed.
 							document.getElementById("hangmanImg").src = "assets/images/sm" + (-(hangmanGame.remGuesses-8)) + ".png";
 							hangmanGame.gameStateCheck();
 						}
@@ -97,19 +133,24 @@ var hangmanGame = {
 	
 	},
 
+	//This method checks if the game is over with a win or a loss.
 	gameStateCheck: function (){
+		//If there are no guesses remaining...
 		if (hangmanGame.remGuesses < 1){
 			hangmanGame.changeDocValue("gameStateText", "Game Over! Click to start again.");
 			hangmanGame.loseSound.play();
 			hangmanGame.playing = false;
 		}
-		else {
-			var placeHolderWord = "";
 
+		//if the game is still going on.
+		else {
+			//A placeholder word of the accrued successful letter guesses is made for comparison
+			var placeHolderWord = "";
 			for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
 				placeHolderWord += hangmanGame.letters[i].textContent;
 			}
 
+			//If the letters guessed correctly add up to make the word to guess, the player wins.
 			if (hangmanGame.wordToGuess === placeHolderWord){
 				hangmanGame.wins += 1;
 				hangmanGame.changeDocValue("numberOfWins", hangmanGame.wins);
@@ -123,6 +164,7 @@ var hangmanGame = {
 
 };
 
+//This code below starts us off by invoking a reset of the game and assigning the window on key presses to gameClick.
 hangmanGame.resetGame();
 document.onkeypress = hangmanGame.gameClick;
 
