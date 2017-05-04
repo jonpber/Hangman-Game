@@ -2,6 +2,12 @@ html, body {
 	height: 100%;
 }
 
+body {
+	background-image: url("../images/back.png");
+	background-size: 100% 100%;
+	overflow: hidden;
+}
+
 .tv {
     background-image: url(../images/tv.png);
     background-size: 100% 100%;
@@ -41,13 +47,6 @@ h1 {
 
 .letterRows {
 	height: 40px;
-}
-
-body {
-	background-image: url("../images/back.png");
-	background-repeat: no-repeat;
-	background-color: #6e002e;
-	overflow: hidden;
 }
 
 .pageContainer {
