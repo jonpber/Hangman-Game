@@ -7,7 +7,7 @@ var hangmanGame = {
 	"GORILLA", "PLUMBER", "ROBOT", "CONTROLLER", "CARTRIDGE", "FUN", "LEVEL", "LIVES", "HEDGEHOG", "BIT", "POWER", 
 	"KART", "HERO", "VILLAIN", "ABILITY", "PLATFORM", "ITEM", "MUSHROOM", "TURTLE", "SWORD", "GUN",
 	"PLAYER", "CHARACTER", "QUEST", "EQUIPMENT", "TEAM", "CODE", "SPRITE", "BROTHERS", "BOX", "ARCADE", "FIGHTER",
-	"MAGE", "WARRIOR", "MAGIC"],
+	"MAGE", "WARRIOR", "MAGIC", "TETRIS", "INVADERS"],
 	
 	//The basic game elements: which letters were guessed, guesses remaining, if they are currently guessing a word, and win#.
 	letGuessed: "",
