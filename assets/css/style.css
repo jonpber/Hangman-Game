@@ -15,7 +15,6 @@ body {
 	width: 1003px;
 	margin: 100px auto;
 	position: relative;
-
 }
 
 .container {
@@ -56,4 +55,42 @@ p {
 img {
 	width: 250px;
 	float: right;
+}
+
+@media screen and (max-width: 767px){
+	h1 {
+		font-size: 25px;
+	}
+
+	img {
+		width: 150px;
+		float: right;
+	}
+
+
+	p {
+		display: inline;
+	    font-size: 15px;
+	}
+
+	.tv {
+		background-image: url(../images/tv.png);
+		background-size: 80% 80%;
+		background-repeat: no-repeat;
+		height: 640px;
+		width: 1003px;
+		margin: 100px auto;
+		position: relative;
+	}
+
+	.container {
+		width: 500px;
+		margin-left: 60px;
+		padding-top: 5px;
+	}
+
+	.container {
+		padding-top: 0px;
+	}
+
 }
