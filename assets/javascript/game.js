@@ -9,7 +9,8 @@ letGuessed = "";
 playing = false;
 
 var words = ["CAT", "SWORD", "TRICKLE", "EXPERT", "TROOPER", "DOG", "COCKROACH", "PANCAKE", "SUPER", "TRUTH",
-"ORANGUTAN", "ORANGE", "PENGUIN", "TACO"]
+"ORANGUTAN", "ORANGE", "PENGUIN", "TACO", "TRIUMPH", "WESTERN", "TELEVISION", "TURTLE", "BEAR", "SUSHI", "PIZZA", 
+"EARLY", "DOCTOR", "POWERFUL", "SUBTLE", "FRIEND"]
 
 var letters = document.getElementsByClassName("letterInWord");
 var spaces = document.getElementsByClassName("letterSpaces");
@@ -125,4 +126,5 @@ function gameStateCheck(){
 	}
 }
 
+resetGame();
 document.onkeypress = gameClick;
