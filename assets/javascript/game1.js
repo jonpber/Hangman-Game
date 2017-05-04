@@ -24,6 +24,7 @@ var hangmanGame = {
 	failSound: new Audio("assets/sounds/fail.wav"),
 	winSound: new Audio("assets/sounds/win.wav"),
 	loseSound: new Audio("assets/sounds/lose.wav"),
+	dudSound: new Audio("assets/sounds/dud.wav"),
 
 	//This method takes a document ID and changes its value
 	changeDocValue: function(idName, value){
@@ -93,14 +94,20 @@ var hangmanGame = {
 
 							//It will go through and place the word in their corresponding letter spot.
 							for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
-							if (hangmanGame.wordToGuess[i] === keynum.toUpperCase()){
-								hangmanGame.letters[i].innerHTML = keynum.toUpperCase();
-								hangmanGame.letters[i].style.display = "block";
-								hangmanGame.gameStateCheck();
+								if (hangmanGame.wordToGuess[i] === keynum.toUpperCase()){
+									hangmanGame.letters[i].innerHTML = keynum.toUpperCase();
+									hangmanGame.letters[i].style.display = "block";
+									hangmanGame.gameStateCheck();
+								}
 							}
-						}
 							
 						}
+
+						else {
+							hangmanGame.dudSound.play();
+						}
+
+
 
 						
 					}
@@ -120,6 +127,10 @@ var hangmanGame = {
 							//automatically grows through updating it with every letter wrongly guessed.
 							document.getElementById("hangmanImg").src = "assets/images/sm" + (-(hangmanGame.remGuesses-8)) + ".png";
 							hangmanGame.gameStateCheck();
+						}
+
+						else {
+							hangmanGame.dudSound.play();
 						}
 						
 
