@@ -124,7 +124,7 @@ var hangmanGame = {
 
 		//If the player IS playing and clicks...
 		else {
-			console.log("event", event);
+			console.log(event.key);
 			//This piece of code checks if the window event is a keystroke.
 		    if(event.which) { 
 		    	var keynum;
