@@ -132,7 +132,7 @@ var hangmanGame = {
 		    	hangmanGame.letterCheck(keynum);               
 		    } 
 
-		    if(window.event) { 
+		    else if(window.event) { 
 		    	alert("button click works");
 		    	var keynum;
 				keynum = String.fromCharCode(window.event);
