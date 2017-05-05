@@ -50,6 +50,61 @@ var hangmanGame = {
 
 	},
 
+	//Checks the value of a letter pressed compared to 
+	letterCheck: function(keyToCheck) {
+    	if (keyToCheck.match(/[a-z]/gi)) {
+    		//If the letter guessed is included in the word to guess/
+			if (hangmanGame.wordToGuess.includes(keyToCheck.toUpperCase())){
+				
+				//A placeholder is used to create a comparison word.
+				var placeHolderWord = "";
+				for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
+					placeHolderWord += hangmanGame.letters[i].textContent;
+				}
+
+				//If this placeholder word does not include the letter already
+				if (placeHolderWord.includes(keyToCheck.toUpperCase()) === false){
+					hangmanGame.successSound.play();
+
+					//It will go through and place the word in their corresponding letter spot.
+					for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
+						if (hangmanGame.wordToGuess[i] === keyToCheck.toUpperCase()){
+							hangmanGame.letters[i].innerHTML = keyToCheck.toUpperCase();
+							hangmanGame.letters[i].style.display = "block";
+							hangmanGame.gameStateCheck();
+						}
+					}
+				}
+
+				else {
+					hangmanGame.dudSound.play();
+				}
+			}
+
+			//If the letter guessed is not in the word to guess
+			else {
+				//As long as this wrong letter hasn't been guessed before, it will go through this step
+				if (hangmanGame.letGuessed.includes(keyToCheck.toUpperCase()) === false){
+					hangmanGame.failSound.play();
+					hangmanGame.remGuesses -= 1;
+					hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
+					//This adds the letter wrongly guessed to the letters guessed list
+					hangmanGame.letGuessed += keyToCheck.toUpperCase() + " ";
+					hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
+
+					//This code changes the hangman image. All the images are name chronologically starting at 1, so this code
+					//automatically grows through updating it with every letter wrongly guessed.
+					document.getElementById("hangmanImg").src = "assets/images/sm" + (-(hangmanGame.remGuesses-8)) + ".png";
+					hangmanGame.gameStateCheck();
+				}
+
+				else {
+					hangmanGame.dudSound.play();
+				}
+			}
+		}
+	},
+
 	//This is the method that occurs every time someone clicks anything on the keyboard.
 	gameClick: function () {
 
@@ -70,78 +125,12 @@ var hangmanGame = {
 		//If the player IS playing and clicks...
 		else {
 			//This piece of code checks if the window event is a keystroke.
-			var keynum;
 		    if(window.event || event.which) { 
-
-		    	//The keystrong is converted to a string value.                 
-		    	keynum = String.fromCharCode(event.keyCode);
-
-		    	//This if checks if the value is in fact a letter and nothing else.
-		    	if (keynum.match(/[a-z]/gi)) {
-
-		    		//If the letter guessed is included in the word to guess/
-					if (hangmanGame.wordToGuess.includes(keynum.toUpperCase())){
-						
-						//A placeholder is used to create a comparison word.
-						var placeHolderWord = "";
-						for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
-							placeHolderWord += hangmanGame.letters[i].textContent;
-						}
-
-						//If this placeholder word does not include the letter already
-						if (placeHolderWord.includes(keynum.toUpperCase()) === false){
-							hangmanGame.successSound.play();
-
-							//It will go through and place the word in their corresponding letter spot.
-							for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
-								if (hangmanGame.wordToGuess[i] === keynum.toUpperCase()){
-									hangmanGame.letters[i].innerHTML = keynum.toUpperCase();
-									hangmanGame.letters[i].style.display = "block";
-									hangmanGame.gameStateCheck();
-								}
-							}
-							
-						}
-
-						else {
-							hangmanGame.dudSound.play();
-						}
-
-
-
-						
-					}
-
-					//If the letter guessed is not in the word to guess
-					else {
-						//As long as this wrong letter hasn't been guessed before, it will go through this step
-						if (hangmanGame.letGuessed.includes(keynum.toUpperCase()) === false){
-							hangmanGame.failSound.play();
-							hangmanGame.remGuesses -= 1;
-							hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
-							//This adds the letter wrongly guessed to the letters guessed list
-							hangmanGame.letGuessed += keynum.toUpperCase() + " ";
-							hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
-
-							//This code changes the hangman image. All the images are name chronologically starting at 1, so this code
-							//automatically grows through updating it with every letter wrongly guessed.
-							document.getElementById("hangmanImg").src = "assets/images/sm" + (-(hangmanGame.remGuesses-8)) + ".png";
-							hangmanGame.gameStateCheck();
-						}
-
-						else {
-							hangmanGame.dudSound.play();
-						}
-						
-
-					}
-
-				}
-
-
+		    	var keynum;
+				keynum = String.fromCharCode(event.keyCode);
+		    	hangmanGame.letterCheck(keynum);               
 		    } 
 		}
-	
 	},
 
 	//This method checks if the game is over with a win or a loss.
