@@ -125,11 +125,17 @@ var hangmanGame = {
 		//If the player IS playing and clicks...
 		else {
 			//This piece of code checks if the window event is a keystroke.
-		    if(event.which || window.event) { 
-		    	console.log("button click works");
+		    if(event.which) { 
+		    	alert("button click works");
 		    	var keynum;
-		    	alert
-				keynum = String.fromCharCode(event.which || window.event);
+				keynum = String.fromCharCode(event.which);
+		    	hangmanGame.letterCheck(keynum);               
+		    } 
+
+		    if(window.event) { 
+		    	alert("button click works");
+		    	var keynum;
+				keynum = String.fromCharCode(window.event);
 		    	hangmanGame.letterCheck(keynum);               
 		    } 
 		}
