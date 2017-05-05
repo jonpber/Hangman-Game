@@ -127,7 +127,7 @@ var hangmanGame = {
 			//This piece of code checks if the window event is a keystroke.
 		    if(window.event || event.which) { 
 		    	var keynum;
-				keynum = String.fromCharCode(event.keyCode);
+				keynum = String.fromCharCode(event.keyCode || event.which);
 		    	hangmanGame.letterCheck(keynum);               
 		    } 
 		}
