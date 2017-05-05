@@ -106,7 +106,7 @@ var hangmanGame = {
 	},
 
 	//This is the method that occurs every time someone clicks anything on the keyboard.
-	gameClick: function () {
+	gameClick: function (e) {
 
 		//If the player clicks when the game is not in play mode, it will reset and start a game.
 		if (hangmanGame.playing === false){
@@ -124,7 +124,7 @@ var hangmanGame = {
 
 		//If the player IS playing and clicks...
 		else {
-		    hangmanGame.letterCheck(event.key);               
+		    hangmanGame.letterCheck(e.key);               
 		}
 	},
 
@@ -161,5 +161,7 @@ var hangmanGame = {
 
 //This code below starts us off by invoking a reset of the game and assigning the window on key presses to gameClick.
 hangmanGame.resetGame();
-document.onkeypress = hangmanGame.gameClick;
+document.onkeypress = function (event){
+	hangmanGame.gameClick(event);
+}
 
