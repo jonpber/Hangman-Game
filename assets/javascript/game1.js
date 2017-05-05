@@ -128,7 +128,6 @@ var hangmanGame = {
 		    if(event.which) { 
 		    	alert("button click works");
 		    	var keynum;
-		    	alert
 				keynum = String.fromCharCode(event.which);
 		    	hangmanGame.letterCheck(keynum);               
 		    } 
@@ -136,12 +135,9 @@ var hangmanGame = {
 		    if(window.event) { 
 		    	alert("button click works");
 		    	var keynum;
-		    	alert
 				keynum = String.fromCharCode(window.event);
 		    	hangmanGame.letterCheck(keynum);               
 		    } 
-
-		    
 		}
 	},
 
