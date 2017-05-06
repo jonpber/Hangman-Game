@@ -1,7 +1,6 @@
 
 //The Hangman Game Object
 var hangmanGame = {
-
 	//The game words
 	words: ["GAME", "ATARI", "PONG", "CONSOLE", "COMPUTER", "GRAPHICS", "PIXELS", "DIFFICULTY", "BOSS", "ENEMY",
 	"GORILLA", "PLUMBER", "ROBOT", "CONTROLLER", "CARTRIDGE", "FUN", "LEVEL", "LIVES", "HEDGEHOG", "BIT", "POWER", 
@@ -33,19 +32,19 @@ var hangmanGame = {
 
 	//This method resets the game to initial mode.
 	resetGame: function (){
-		hangmanGame.letGuessed = "";
-		hangmanGame.remGuesses = 7;
+		this.letGuessed = "";
+		this.remGuesses = 7;
 		document.getElementById("hangmanImg").src = "assets/images/sm1.png";
-		hangmanGame.changeDocValue("numberOfWins", hangmanGame.wins);
-		hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
-		hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
+		this.changeDocValue("numberOfWins", this.wins);
+		this.changeDocValue("guessesRem", this.remGuesses);
+		this.changeDocValue("lettersGuessed", this.letGuessed);
 
 		//this loop goes through every space and letter element to be guessed and blanks them out.
 	    var i;
-	    for (i = 0; i < hangmanGame.spaces.length; i++) {
-	        hangmanGame.spaces[i].style.display = "none";
-	        hangmanGame.letters[i].style.display = "none";
-	        hangmanGame.letters[i].innerHTML = "";
+	    for (i = 0; i < this.spaces.length; i++) {
+	        this.spaces[i].style.display = "none";
+	        this.letters[i].style.display = "none";
+	        this.letters[i].innerHTML = "";
 	    }
 
 	},
@@ -54,52 +53,52 @@ var hangmanGame = {
 	letterCheck: function(keyToCheck) {
     	if (keyToCheck.match(/[a-z]/gi)) {
     		//If the letter guessed is included in the word to guess/
-			if (hangmanGame.wordToGuess.includes(keyToCheck.toUpperCase())){
+			if (this.wordToGuess.includes(keyToCheck.toUpperCase())){
 				
 				//A placeholder is used to create a comparison word.
 				var placeHolderWord = "";
-				for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
-					placeHolderWord += hangmanGame.letters[i].textContent;
+				for (var i = 0; i < this.wordToGuess.length; i++){
+					placeHolderWord += this.letters[i].textContent;
 				}
 
 				//If this placeholder word does not include the letter already
 				if (placeHolderWord.includes(keyToCheck.toUpperCase()) === false){
-					hangmanGame.successSound.play();
+					this.successSound.play();
 
 					//It will go through and place the word in their corresponding letter spot.
-					for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
-						if (hangmanGame.wordToGuess[i] === keyToCheck.toUpperCase()){
-							hangmanGame.letters[i].innerHTML = keyToCheck.toUpperCase();
-							hangmanGame.letters[i].style.display = "block";
-							hangmanGame.gameStateCheck();
+					for (var i = 0; i < this.wordToGuess.length; i++) {
+						if (this.wordToGuess[i] === keyToCheck.toUpperCase()){
+							this.letters[i].innerHTML = keyToCheck.toUpperCase();
+							this.letters[i].style.display = "block";
+							this.gameStateCheck();
 						}
 					}
 				}
 
 				else {
-					hangmanGame.dudSound.play();
+					this.dudSound.play();
 				}
 			}
 
 			//If the letter guessed is not in the word to guess
 			else {
 				//As long as this wrong letter hasn't been guessed before, it will go through this step
-				if (hangmanGame.letGuessed.includes(keyToCheck.toUpperCase()) === false){
-					hangmanGame.failSound.play();
-					hangmanGame.remGuesses -= 1;
-					hangmanGame.changeDocValue("guessesRem", hangmanGame.remGuesses);
+				if (this.letGuessed.includes(keyToCheck.toUpperCase()) === false){
+					this.failSound.play();
+					this.remGuesses -= 1;
+					this.changeDocValue("guessesRem", this.remGuesses);
 					//This adds the letter wrongly guessed to the letters guessed list
-					hangmanGame.letGuessed += keyToCheck.toUpperCase() + " ";
-					hangmanGame.changeDocValue("lettersGuessed", hangmanGame.letGuessed);
+					this.letGuessed += keyToCheck.toUpperCase() + " ";
+					this.changeDocValue("lettersGuessed", this.letGuessed);
 
 					//This code changes the hangman image. All the images are name chronologically starting at 1, so this code
 					//automatically grows through updating it with every letter wrongly guessed.
-					document.getElementById("hangmanImg").src = "assets/images/sm" + (-(hangmanGame.remGuesses-8)) + ".png";
-					hangmanGame.gameStateCheck();
+					document.getElementById("hangmanImg").src = "assets/images/sm" + (-(this.remGuesses-8)) + ".png";
+					this.gameStateCheck();
 				}
 
 				else {
-					hangmanGame.dudSound.play();
+					this.dudSound.play();
 				}
 			}
 		}
@@ -109,37 +108,37 @@ var hangmanGame = {
 	gameClick: function (e) {
 
 		//If the player clicks when the game is not in play mode, it will reset and start a game.
-		if (hangmanGame.playing === false){
-			hangmanGame.resetGame();
-			hangmanGame.changeDocValue("gameStateText", "Guess the word!");
-			hangmanGame.playing = true;
+		if (this.playing === false){
+			this.resetGame();
+			this.changeDocValue("gameStateText", "Guess the word!");
+			this.playing = true;
 
 			//This is the code to generate a new guessed word from the list and use a loop to go through
 			//the spaces row and fill it out according to how many letters are needed.
-			hangmanGame.wordToGuess = hangmanGame.words[Math.floor(Math.random() * hangmanGame.words.length)];
-			for (var i = 0; i < hangmanGame.wordToGuess.length; i++) {
-				hangmanGame.spaces[i].style.display = "block";
+			this.wordToGuess = this.words[Math.floor(Math.random() * this.words.length)];
+			for (var i = 0; i < this.wordToGuess.length; i++) {
+				this.spaces[i].style.display = "block";
 			}
 		}
 
 		//If the player IS playing and clicks...
 		else {
-		    hangmanGame.letterCheck(e.key);               
+		    this.letterCheck(e.key);               
 		}
 	},
 
 	//This method checks if the game is over with a win or a loss.
 	gameStateCheck: function (){
 		//If there are no guesses remaining...
-		if (hangmanGame.remGuesses < 1){
-			hangmanGame.changeDocValue("gameStateText", "Game Over! Click to start again.");
-			hangmanGame.loseSound.play();
-			hangmanGame.playing = false;
+		if (this.remGuesses < 1){
+			this.changeDocValue("gameStateText", "Game Over! Click to start again.");
+			this.loseSound.play();
+			this.playing = false;
 
 			//fills in word if player loses
-			for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
-				hangmanGame.letters[i].innerHTML = hangmanGame.wordToGuess[i];
-				hangmanGame.letters[i].style.display = "block";
+			for (var i = 0; i < this.wordToGuess.length; i++){
+				this.letters[i].innerHTML = this.wordToGuess[i];
+				this.letters[i].style.display = "block";
 			}
 		}
 
@@ -147,17 +146,17 @@ var hangmanGame = {
 		else {
 			//A placeholder word of the accrued successful letter guesses is made for comparison
 			var placeHolderWord = "";
-			for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
-				placeHolderWord += hangmanGame.letters[i].textContent;
+			for (var i = 0; i < this.wordToGuess.length; i++){
+				placeHolderWord += this.letters[i].textContent;
 			}
 
 			//If the letters guessed correctly add up to make the word to guess, the player wins.
-			if (hangmanGame.wordToGuess === placeHolderWord){
-				hangmanGame.wins += 1;
-				hangmanGame.changeDocValue("numberOfWins", hangmanGame.wins);
-				hangmanGame.playing = false;
-				hangmanGame.changeDocValue("gameStateText", "You Win! Click to start again.");
-				hangmanGame.winSound.play();
+			if (this.wordToGuess === placeHolderWord){
+				this.wins += 1;
+				this.changeDocValue("numberOfWins", this.wins);
+				this.playing = false;
+				this.changeDocValue("gameStateText", "You Win! Click to start again.");
+				this.winSound.play();
 
 			}
 		}
