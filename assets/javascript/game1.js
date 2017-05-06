@@ -135,6 +135,11 @@ var hangmanGame = {
 			hangmanGame.changeDocValue("gameStateText", "Game Over! Click to start again.");
 			hangmanGame.loseSound.play();
 			hangmanGame.playing = false;
+
+			for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
+				hangmanGame.letters[i].innerHTML = hangmanGame.wordToGuess[i];
+				hangmanGame.letters[i].style.display = "block";
+			}
 		}
 
 		//if the game is still going on.
