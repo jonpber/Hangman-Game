@@ -136,6 +136,7 @@ var hangmanGame = {
 			hangmanGame.loseSound.play();
 			hangmanGame.playing = false;
 
+			//fills in word if player loses
 			for (var i = 0; i < hangmanGame.wordToGuess.length; i++){
 				hangmanGame.letters[i].innerHTML = hangmanGame.wordToGuess[i];
 				hangmanGame.letters[i].style.display = "block";
