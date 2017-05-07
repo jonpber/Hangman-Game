@@ -4,7 +4,8 @@ html, body {
 
 body {
 	background-image: url("../images/back.png");
-	background-size: 100% 100%;
+	background-color: #2d002b;
+	background-repeat: repeat-x;
 	overflow: hidden;
 }
 
@@ -35,7 +36,7 @@ h1 {
 }
 
 .topRow {
-	margin-top: 50px;
+	margin-top: 45px;
 }
 
 .textCenter {
@@ -67,14 +68,17 @@ img {
 		float: right;
 	}
 
+	.topRow {
+		margin-top: 35px;
+	}
+
 
 	p {
 		display: inline;
-	    font-size: 15px;
+	    font-size: 14px;
 	}
 
 	.tv {
-		background-image: url(../images/tv.png);
 		background-size: 80% 80%;
 		background-repeat: no-repeat;
 		height: 640px;
@@ -94,3 +98,51 @@ img {
 	}
 
 }
+
+@media screen and (max-width: 570px){
+	.col-xs-12 {
+		padding: 0;
+	}
+
+	h1 {
+		font-size: 20px;
+	}
+
+	img {
+		width: 125px;
+		float: none;
+	}
+
+
+	p {
+		display: inline;
+	    font-size: 12.5px;
+	}
+
+	.tv {
+		background-image: none;
+		height: 100%;
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+	    text-align: center;
+	}
+
+	.container {
+		width: 100%;
+		margin-left: 0;
+		padding-top: 5px;
+		padding-right: 0;
+	}
+
+	.container {
+		padding-top: 0px;
+	}
+
+	.textCenter {
+	text-align: center;
+	font-size: 9px;
+	}
+
+}
+
