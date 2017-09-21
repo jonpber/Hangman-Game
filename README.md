@@ -1,3 +1,5 @@
+{Hangman)[https://i.imgur.com/YW9cMCe.gif]
+
 # Hangman
 
 A javascript-based Hangman game, themed around classic Nintendo/Atari sensibilities. 
