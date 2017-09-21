@@ -1,4 +1,4 @@
-[Hangman](https://i.imgur.com/YW9cMCe.gif)
+![Hangman](https://i.imgur.com/YW9cMCe.gif)
 
 # Hangman
 
